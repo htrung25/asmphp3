@@ -10,7 +10,7 @@
             @foreach($books as $book)
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="{{ $book->thumbnail }}" alt="Thumbnail" class="card-img-top">
+                        <img src="{{ asset('storage/' . $book->thumbnail) }}" alt="{{ $book->title }}" class="card-img-top" style="height: 350px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">{{ $book->title }}</h5>
                             <p class="card-text">{{ $book->author }}</p>

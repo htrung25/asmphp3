@@ -41,7 +41,7 @@
 
     <footer class="bg-light text-center py-3">
         <div class="container">
-            <p>&copy; {{ date('Y') }} Nguyễn Tiến Đạt.</p>
+            <p>&copy; {{ date('Y') }} Tran Huu Trung.</p>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

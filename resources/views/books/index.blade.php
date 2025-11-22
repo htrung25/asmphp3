@@ -5,12 +5,12 @@
     <h1 class="text-center mb-4">Trang Chủ</h1>
 
     <div class="mb-5">
-        <h2 class="text-center mb-4">Top 9 Sách Có Lượt Xem Nhiều Nhất</h2>
+        <h2 class="text-center mb-4">Top 6 Sách Có Lượt Xem Nhiều Nhất</h2>
         <div class="row">
             @foreach ($topViewedBooks as $book)
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="{{ $book->thumbnail }}" class="card-img-top" alt="Bìa sách">
+                        <img src="{{ asset('storage/' . $book->thumbnail) }}" class="card-img-top" alt="{{ $book->title }}" style="height: 350px; object-fit: cover;">
                         <div class="card-body text-center">
                             <h5 class="card-title">{{ $book->title }}</h5>
                             <p class="card-text">Tác giả: {{ $book->author }}</p>
@@ -26,12 +26,12 @@
     </div>
 
     <div class="mb-5">
-        <h2 class="text-center mb-4">Top 9 Sách Mới Nhất</h2>
+        <h2 class="text-center mb-4">Top 6 Sách Mới Nhất</h2>
         <div class="row">
             @foreach ($newestBooks as $book)
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="{{ $book->thumbnail }}" class="card-img-top" alt="Bìa sách">
+                        <img src="{{ asset('storage/' . $book->thumbnail) }}" class="card-img-top" alt="{{ $book->title }}" style="height: 350px; object-fit: cover;">
                         <div class="card-body text-center">
                             <h5 class="card-title">{{ $book->title }}</h5>
                             <p class="card-text">Tác giả: {{ $book->author }}</p>

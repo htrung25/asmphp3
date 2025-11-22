@@ -5,7 +5,7 @@
     <h1>{{ $book->title }}</h1>
     <div class="row">
         <div class="col-md-4">
-            <img src="{{ $book->thumbnail }}" alt="Ảnh bìa" class="img-fluid">
+            <img src="{{ asset('storage/' . $book->thumbnail) }}" alt="{{ $book->title }}" class="img-fluid">
         </div>
         <div class="col-md-8">
             <p><strong>Tác giả:</strong> {{ $book->author }}</p>
