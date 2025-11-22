@@ -10,16 +10,16 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-{
-    Schema::table('books', function (Blueprint $table) {
-        $table->integer('view_count')->default(0);
-    });
-}
+    {
+        Schema::table('books', function (Blueprint $table) {
+            $table->integer('view_count')->default(0);
+        });
+    }
 
-public function down()
-{
-    Schema::table('books', function (Blueprint $table) {
-        $table->dropColumn('view_count');
-    });
-}
+    public function down()
+    {
+        Schema::table('books', function (Blueprint $table) {
+            $table->dropColumn('view_count');
+        });
+    }
 };
