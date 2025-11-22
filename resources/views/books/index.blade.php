@@ -5,7 +5,7 @@
     <h1 class="text-center mb-4">Trang Chủ</h1>
 
     <div class="mb-5">
-        <h2 class="text-center mb-4">Top 6 Sách Có Lượt Xem Nhiều Nhất</h2>
+        <h2 class="text-center mb-4">Top 8 Sách Có Lượt Xem Nhiều Nhất</h2>
         <div class="row">
             @foreach ($topViewedBooks as $book)
                 <div class="col-md-4 mb-4">
@@ -26,7 +26,7 @@
     </div>
 
     <div class="mb-5">
-        <h2 class="text-center mb-4">Top 6 Sách Mới Nhất</h2>
+        <h2 class="text-center mb-4">Top 8 Sách Mới Nhất</h2>
         <div class="row">
             @foreach ($newestBooks as $book)
                 <div class="col-md-4 mb-4">
