@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,11 @@ Route::get('/categories/{categoryId}/books', [BookController::class, 'listByCate
 Route::get('/search', [BookController::class, 'search'])->name('books.search');
 Route::get('/books/category/{id}', [BookController::class, 'listByCategory'])->name('books.list');
 Route::get('/books', [BookController::class, 'showAll'])->name('books.listall');
-
+Route::get('/gio-hang', [CartController::class, 'index'])->name('cart.index');
+Route::post('/gio-hang/them/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::delete('/gio-hang/xoa/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/gio-hang/cap-nhat', [CartController::class, 'update'])->name('cart.update');
+Route::post('/gio-hang/xoa-het', [CartController::class, 'clear'])->name('cart.clear');
 
 
 
