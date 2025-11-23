@@ -1,0 +1,48 @@
+/* Banner styles (public) - copied from resources CSS so browser can load without building assets */
+.hero-banner {
+  position: relative;
+  background: linear-gradient(135deg,#6b5b95 0%, #feb236 100%);
+  color: #fff;
+  border: 0;
+  overflow: hidden;
+  padding: 2rem;
+  border-radius: .375rem;
+}
+
+.hero-banner.bg-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-banner h2,
+.hero-banner p {
+  color: #fff;
+}
+
+.hero-banner .btn {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 767.98px) {
+  .hero-banner {
+    text-align: center;
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-banner .col-md-8 {
+    padding: 0;
+  }
+}
+
+/* Utility: apply a semi-transparent overlay when using an image */
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.15);
+  pointer-events: none;
+  border-radius: 0.375rem;
+  display: none;
+}
+.hero-banner.bg-image::before { display: block; }

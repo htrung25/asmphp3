@@ -30,6 +30,7 @@ Route::post('/gio-hang/them/{id}', [CartController::class, 'add'])->name('cart.a
 Route::delete('/gio-hang/xoa/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/gio-hang/cap-nhat', [CartController::class, 'update'])->name('cart.update');
 Route::post('/gio-hang/xoa-het', [CartController::class, 'clear'])->name('cart.clear');
+Route::get('/tat-ca-sach', [BookController::class, 'showAll'])->name('books.all');
 
 
 

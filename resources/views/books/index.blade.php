@@ -1,63 +1,62 @@
-{{-- @extends('books.layout')
-
-@section('content')
-<div class="container mt-4">
-    <h1 class="text-center mb-4">Trang Chủ</h1>
-
-    <div class="mb-5">
-        <h2 class="text-center mb-4">Top 8 Sách Có Lượt Xem Nhiều Nhất</h2>
-        <div class="row">
-            @foreach ($topViewedBooks as $book)
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="{{ asset('storage/' . $book->thumbnail) }}" class="card-img-top" alt="{{ $book->title }}" style="height: 350px; object-fit: cover;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">{{ $book->title }}</h5>
-                            <p class="card-text">Tác giả: {{ $book->author }}</p>
-                            <small class="text-muted">{{ $book->view_count }} lượt xem</small>
-                            <div class="mt-3"> <!-- Thêm div này để căn giữa nút -->
-                                <a href="{{ route('books.show', $book->id) }}" class="btn btn-primary">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-
-    <div class="mb-5">
-        <h2 class="text-center mb-4">Top 8 Sách Mới Nhất</h2>
-        <div class="row">
-            @foreach ($newestBooks as $book)
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="{{ asset('storage/' . $book->thumbnail) }}" class="card-img-top" alt="{{ $book->title }}" style="height: 350px; object-fit: cover;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">{{ $book->title }}</h5>
-                            <p class="card-text">Tác giả: {{ $book->author }}</p>
-                            <small class="text-muted">Ngày xuất bản: {{ $book->publication}}</small>
-                            <div class="mt-3"> <!-- Thêm div này để căn giữa nút -->
-                                <a href="{{ route('books.show', $book->id) }}" class="btn btn-primary">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-
-    <div class="text-center">
-    </div>
-</div>
-@endsection --}}
 @extends('books.layout')
 
 @section('content')
     <div class="container mt-4">
-        <h1 class="text-center mb-5 fw-bold text-primary">Chào Mừng Đến Với Cửa Hàng Sách</h1>
+        <h1 class="text-center mb-4 fw-bold text-primary">Chào Mừng Đến Với Cửa Hàng Sách</h1>
+
+                {{-- Hero / Banner --}}
+                <div class="hero-banner mb-4 p-4 rounded-3">
+                        <div class="row align-items-center">
+                                <div class="col-md-8 text-center text-md-start">
+                                        <h2 class="fw-bold mb-2">Khám Phá Những Cuốn Sách Tuyệt Vời</h2>
+                                        <p class="mb-3">Ưu đãi đặc biệt, sách bán chạy và sách mới cập nhật mỗi tuần. Tìm sách phù hợp với bạn ngay hôm nay.</p>
+                                        <a href="#products" class="btn btn-light btn-sm">Mua Ngay</a>
+                                </div>
+                        </div>
+                </div>
+
+        {{-- Carousel (Bootstrap 5) --}}    
+                <div id="homepageCarousel" class="carousel slide mb-4 rounded-3" data-bs-ride="carousel" data-bs-interval="4000">
+                        <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#homepageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#homepageCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#homepageCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                        <img src="{{ asset('images/carousel1.jpg') }}" class="d-block w-100" alt="Banner 1" style="height:420px; object-fit:cover;">
+                                        <div class="carousel-caption d-none d-md-block text-start">
+                                                <h5 class="fw-bold">Khám Phá Những Cuốn Sách Tuyệt Vời</h5>
+                                                <p>Ưu đãi đặc biệt, sách bán chạy và sách mới cập nhật mỗi tuần.</p>
+                                        </div>
+                                </div>
+                                <div class="carousel-item">
+                                        <img src="{{ asset('images/carousel2.jpg') }}" class="d-block w-100" alt="Banner 2" style="height:420px; object-fit:cover;">
+                                        <div class="carousel-caption d-none d-md-block text-start">
+                                                <h5 class="fw-bold">Sách Bán Chạy</h5>
+                                                <p>Những cuốn sách được yêu thích nhất bởi độc giả.</p>
+                                        </div>
+                                </div>
+                                <div class="carousel-item">
+                                        <img src="{{ asset('images/carousel3.jpg') }}" class="d-block w-100" alt="Banner 3" style="height:420px; object-fit:cover;">
+                                        <div class="carousel-caption d-none d-md-block text-start">
+                                                <h5 class="fw-bold">Mới Ra Mắt</h5>
+                                                <p>Cập nhật sách mới, ưu đãi hấp dẫn mỗi tuần.</p>
+                                        </div>
+                                </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#homepageCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#homepageCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                        </button>
+                </div>
 
         {{-- Top 4 Sách Bán Chạy Nhất --}}
-        <div class="mb-5">
+        <div class="mb-5" id="products">
             <h2 class="text-center mb-4 text-danger fw-bold">
                 Top 4 Sách Bán Chạy Nhất
             </h2>

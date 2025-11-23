@@ -26,12 +26,32 @@ class BookController extends Controller
         return view('books.index', compact('bestsellerBooks', 'newestBooks', 'categories'));
     }
 
-    public function showAll()
+    public function showAll(Request $request)
     {
-        $books = Book::paginate(10);
-        return view('books.listall', compact('books'));
-    }
+        $sort = $request->get('sort', 'newest'); // mặc định là mới nhất
 
+        $query = Book::query();
+
+        switch ($sort) {
+            case 'views':
+                $query->orderBy('view_count', 'desc');
+                break;
+            case 'price_asc':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_desc':
+                $query->orderBy('price', 'desc');
+                break;
+            default: // newest
+                $query->orderBy('publication', 'desc');
+                break;
+        }
+
+        $books = $query->paginate(9); // ← chính là 9 sản phẩm/trang
+        $books->appends(['sort' => $sort]); // giữ lại tham số sort khi sang trang
+
+        return view('books.listall', compact('books', 'sort'));
+    }
 
     public function show($id)
     {
