@@ -28,6 +28,12 @@
             </ul>
 
             <div class="d-flex align-items-center">
+                <!-- Search form -->
+                <form action="{{ route('products.index') }}" method="GET" class="d-flex me-3">
+                    <input name="q" class="form-control form-control-sm me-2" type="search" placeholder="Tìm kiếm" value="{{ request('q') }}">
+                    <button class="btn btn-outline-secondary btn-sm" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+
                 @guest
                     <a class="btn btn-outline-primary me-2" href="{{ route('login') }}">Đăng nhập</a>
                     <a class="btn btn-primary" href="{{ route('register') }}">Đăng ký</a>
@@ -68,8 +74,10 @@
                         </div>
                     </div>
                 @endguest
-                <a href="#" class="cart-icon">
+                <a href="{{ route('cart.index') }}" class="cart-icon position-relative me-2">
                     <i class="fas fa-shopping-cart"></i>
+                    @php $count = array_sum(array_column(session('cart', []), 'qty') ?: [0]); @endphp
+                    <span id="cart-count-badge" class="badge bg-danger rounded-pill position-absolute" style="top:-6px;right:-10px;font-size:0.7rem; {{ $count == 0 ? 'display:none' : '' }}">{{ $count }}</span>
                 </a>
             </div>
         </div>

@@ -30,6 +30,15 @@
                             @enderror
                         </div>
 
+                        <!-- Phone -->
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Số điện thoại</label>
+                            <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required>
+                            @error('phone')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <!-- Password -->
                         <div class="mb-3">
                             <label for="password" class="form-label">Mật khẩu</label>

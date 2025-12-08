@@ -41,7 +41,13 @@
                         </form>
                     </td>
                     <td>
-                        <!-- Có thể thêm xóa sau -->
+                        <a href="{{ route('admin.users.show', $user) }}" class="btn btn-info btn-sm">Xem</a>
+
+                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc muốn xóa tài khoản này?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

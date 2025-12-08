@@ -9,3 +9,25 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Custom styles for product quantity and cart buttons */
+.product-qty {
+    width: 120px;
+    padding: .375rem .5rem;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    text-align: center;
+}
+
+.btn-qty {
+    padding: .35rem .5rem;
+    min-width: 40px;
+}
+
+.cart-description-box {
+    background: #111;
+    color: #fff;
+    padding: .75rem;
+    border-radius: 6px;
+}
+

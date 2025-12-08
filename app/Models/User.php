@@ -19,6 +19,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'is_active',
+        'role',
     ];
 
     protected $hidden = [
@@ -26,11 +27,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected function cast()
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'is_active' => 'boolean',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'is_active' => 'boolean',
+    ];
 }
