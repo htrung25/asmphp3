@@ -4,21 +4,30 @@
         <hr class="border-secondary">
         <ul class="nav flex-column">
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link text-white rounded {{ request()->routeIs('admin.dashboard') ? 'bg-danger' : '' }}">
+                <a href="{{ route('admin.dashboard') }}"
+                    class="nav-link text-white rounded {{ request()->routeIs('admin.dashboard') ? 'bg-danger' : '' }}">
                     <i class="bi bi-speedometer2"></i> Dashboard
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.products.index') }}" class="nav-link text-white rounded {{ request()->routeIs('admin.products.*') ? 'bg-danger' : '' }}">
+                <a href="{{ route('admin.products.index') }}"
+                    class="nav-link text-white rounded {{ request()->routeIs('admin.products.*') ? 'bg-danger' : '' }}">
                     <i class="bi bi-box-seam"></i> Sản phẩm
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="{{ route('admin.categories.index') }}" class="nav-link text-white rounded {{ request()->routeIs('admin.categories.*') ? 'bg-danger' : '' }}">
+                <a href="{{ route('admin.categories.index') }}"
+                    class="nav-link text-white rounded {{ request()->routeIs('admin.categories.*') ? 'bg-danger' : '' }}">
                     <i class="bi bi-tags"></i> Danh mục
                 </a>
             </li>
             <!-- Thêm các menu khác ở đây -->
+            <li class="nav-item mb-2">
+                <a href="{{ route('admin.users.index') }}"
+                    class="nav-link text-white rounded {{ request()->routeIs('admin.users.*') ? 'bg-danger' : '' }}">
+                    <i class="bi bi-people"></i> Quản lý người dùng
+                </a>
+            </li>
         </ul>
     </div>
 </div>

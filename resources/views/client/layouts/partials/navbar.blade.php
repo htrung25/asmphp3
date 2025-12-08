@@ -1,6 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-dark shadow-lg sticky-top">
+<!-- Header Top -->
+<div class="header-top">
     <div class="container">
-        <a class="navbar-brand fw-bold fs-3" href="{{ route('home') }}">
+        <div class="hotline">
+            <i class="fas fa-phone me-2"></i>Hotline: 1900 1234
+        </div>
+        <div class="store-system">
+            <i class="fas fa-map-marker-alt me-2"></i>Hệ thống cửa hàng
+        </div>
+    </div>
+</div>
+
+<!-- Main Navigation -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ route('home') }}">
             GUNDAM
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
@@ -14,30 +27,67 @@
                 <li class="nav-item"><a class="nav-link px-4" href="#">Liên hệ</a></li>
             </ul>
 
-            <ul class="navbar-nav">
+            <div class="d-flex align-items-center">
                 @guest
-                    <li class="nav-item"><a class="btn btn-outline-light text-dark me-2" href="{{ route('login') }}">Đăng nhập</a></li>
-                    <li class="nav-item"><a class="btn btn-danger" href="{{ route('register') }}">Đăng ký</a></li>
+                    <a class="btn btn-outline-primary me-2" href="{{ route('login') }}">Đăng nhập</a>
+                    <a class="btn btn-primary" href="{{ route('register') }}">Đăng ký</a>
                 @else
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
-                            {{ Auth::user()->name }}
+                    <div class="user-dropdown">
+                        <a class="account-btn" href="#" onclick="toggleUserDropdown(event)">
+                            <i class="fas fa-user-circle"></i>
+                            Tài khoản của bạn
+                            <i class="fas fa-chevron-down ms-1"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            @if(Auth::user()->hasRole('admin'))
-                                <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Quản trị</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                            @endif
-                            <li>
-                                <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                        <div class="user-dropdown-menu" id="userDropdown">
+                            <div class="dropdown-header">
+                                THÔNG TIN TÀI KHOẢN
+                            </div>
+                            <div class="user-info">
+                                <div class="user-info-item">
+                                    <span class="user-info-label">Tên:</span>
+                                    <span class="user-info-value">{{ Auth::user()->name }}</span>
+                                </div>
+                                <div class="user-info-item">
+                                    <span class="user-info-label">Email:</span>
+                                    <span class="user-info-value">{{ Auth::user()->email }}</span>
+                                </div>
+                                <div class="user-info-item">
+                                    <span class="user-info-label">Số điện thoại:</span>
+                                    <span class="user-info-value">{{ Auth::user()->phone ?? 'Chưa cập nhật' }}</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-actions">
+                                <a href="{{ route('profile.show') }}" class="btn-detail">
+                                    Xem chi tiết
+                                </a>
+                                <a href="{{ route('logout') }}" class="btn-logout"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     Đăng xuất
                                 </a>
-                            </li>
-                        </ul>
-                    </li>
+                            </div>
+                        </div>
+                    </div>
                 @endguest
-            </ul>
+                <a href="#" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </div>
         </div>
     </div>
 </nav>
+
+<script>
+function toggleUserDropdown(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById('userDropdown');
+    dropdown.classList.toggle('show');
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function closeDropdown(e) {
+        if (!e.target.closest('.user-dropdown')) {
+            dropdown.classList.remove('show');
+            document.removeEventListener('click', closeDropdown);
+        }
+    });
+}
+</script>
