@@ -9,7 +9,7 @@
                     <h3 class="text-center">Đăng ký</h3>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" class="client-validate">
                         @csrf
 
                         <!-- Name -->
@@ -19,6 +19,7 @@
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                            <div class="invalid-feedback client-error" data-for="name" style="display:none;" aria-live="polite"></div>
                         </div>
 
                         <!-- Email Address -->
@@ -28,6 +29,7 @@
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                            <div class="invalid-feedback client-error" data-for="email" style="display:none;" aria-live="polite"></div>
                         </div>
 
                         <!-- Phone -->
@@ -37,6 +39,7 @@
                             @error('phone')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                            <div class="invalid-feedback client-error" data-for="phone" style="display:none;" aria-live="polite"></div>
                         </div>
 
                         <!-- Password -->
@@ -46,12 +49,14 @@
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                            <div class="invalid-feedback client-error" data-for="password" style="display:none;" aria-live="polite"></div>
                         </div>
 
                         <!-- Confirm Password -->
                         <div class="mb-3">
                             <label for="password_confirmation" class="form-label">Xác nhận mật khẩu</label>
                             <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
+                            <div class="invalid-feedback client-error" data-for="password_confirmation" style="display:none;" aria-live="polite"></div>
                         </div>
 
                         <div class="d-grid">

@@ -95,6 +95,59 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 });
+
+// Client-side simple required-field validation for login/register
+document.addEventListener('DOMContentLoaded', function() {
+	document.querySelectorAll('form.client-validate').forEach(form => {
+		form.addEventListener('submit', function(e) {
+			// Clear previous client errors
+			form.querySelectorAll('.client-error').forEach(el => { el.classList.remove('d-block'); el.style.display = 'none'; el.textContent = ''; });
+
+			let hasError = false;
+			// check required inputs
+			form.querySelectorAll('input, textarea, select').forEach(el => {
+				if (el.hasAttribute('required')) {
+					const val = (el.value || '').toString().trim();
+					if (val === '') {
+						hasError = true;
+						// find corresponding error container by data-for attribute
+						const key = el.getAttribute('name') || el.getAttribute('id');
+						const container = form.querySelector('.client-error[data-for="' + key + '"]') || form.querySelector('.client-error[data-for="' + el.id + '"]');
+						if (container) {
+							container.textContent = 'Vui lòng nhập ' + (el.getAttribute('aria-label') || key || 'trường này') + '.';
+							container.classList.add('d-block');
+							container.style.display = '';
+						} else {
+							// fallback: append a bootstrap invalid-feedback element after the field
+							const msg = document.createElement('div');
+							msg.className = 'invalid-feedback d-block client-error mt-1';
+							msg.textContent = 'Vui lòng nhập trường này.';
+							el.insertAdjacentElement('afterend', msg);
+						}
+						// mark the input invalid for styling
+						el.classList.add('is-invalid');
+					}
+				}
+			});
+
+			if (hasError) {
+				e.preventDefault();
+				// focus first invalid
+				const first = form.querySelector('.is-invalid');
+				if (first) first.focus();
+			}
+		});
+
+		// clear client error when user types
+		form.querySelectorAll('input, textarea').forEach(el => {
+			el.addEventListener('input', function() {
+				const container = form.querySelector('.client-error[data-for="' + (el.getAttribute('name') || el.id) + '"]');
+				if (container) { container.classList.remove('d-block'); container.style.display = 'none'; container.textContent = ''; }
+				el.classList.remove('is-invalid');
+			});
+		});
+	});
+});
 </script>
 
 {{-- Nếu sau này có thêm JS chung thì để đây --}}

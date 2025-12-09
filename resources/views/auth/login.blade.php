@@ -9,7 +9,7 @@
                     <h3 class="text-center">Đăng nhập</h3>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" class="client-validate">
                         @csrf
 
                         <!-- Email Address -->
@@ -19,6 +19,7 @@
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                            <div class="invalid-feedback client-error" data-for="email" style="display:none;" aria-live="polite"></div>
                         </div>
 
                         <!-- Password -->
@@ -28,6 +29,7 @@
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                            <div class="invalid-feedback client-error" data-for="password" style="display:none;" aria-live="polite"></div>
                         </div>
 
                         <!-- Remember Me -->

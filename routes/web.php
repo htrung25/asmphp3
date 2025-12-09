@@ -73,7 +73,7 @@ Route::prefix('admin')->middleware(['auth'])->as('admin.')->group(function () {
     // Admin dashboard
     Route::get('/', function () {
         $user = Auth::user();
-        if (! $user || $user->role !== 'admin') {
+        if (! $user || ! $user->hasRole('admin')) {
             abort(403);
         }
 

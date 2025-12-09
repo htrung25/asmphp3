@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
@@ -22,19 +23,17 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+        // validated input
+        $data = $request->validated();
 
-        $throttleKey = Str::lower($request->input('email')).'|'.$request->ip();
+        $throttleKey = Str::lower($data['email'] ?? $request->input('email')).'|'.$request->ip();
 
         if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
-            $seconds = RateLimiter::availableIn($throttleKey);
+            // Generic throttle message to avoid leaking exact timing
             throw ValidationException::withMessages([
-                'email' => ["Quá nhiều lần thử đăng nhập. Vui lòng thử lại sau {$seconds} giây."],
+                'email' => [__('auth.throttle')],
             ]);
         }
 
@@ -51,7 +50,7 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        // Prevent login if the account is not active
+        // Prevent login if the account is not active — return generic failure to avoid enumeration
         if (! $user->is_active) {
             Auth::guard('web')->logout();
 
@@ -59,7 +58,7 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerateToken();
 
             throw ValidationException::withMessages([
-                'email' => 'Tài khoản của bạn đang bị khóa.',
+                'email' => __('auth.failed'),
             ]);
         }
 
